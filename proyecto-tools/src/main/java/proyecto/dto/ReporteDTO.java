@@ -9,15 +9,18 @@ public class ReporteDTO {
 	private Date fechaReporte;
 	private Integer idEmpleado;
 	private Integer idSucursal;
+	private Integer idMaquina;
 	private Integer idTipoDano;
+	
 	public ReporteDTO(Integer idReporte, Date fechaCita, Date fechaReporte, Integer idEmpleado,
-			Integer idSucursal, Integer idTipoDano) {
+			Integer idSucursal, Integer idMaquina, Integer idTipoDano) {
 		super();
 		this.idReporte = idReporte;
 		this.fechaCita = fechaCita;
 		this.fechaReporte = fechaReporte;
 		this.idEmpleado = idEmpleado;
 		this.idSucursal = idSucursal;
+		this.idMaquina=idMaquina;
 		this.idTipoDano = idTipoDano;
 	}
 	public ReporteDTO() {
@@ -43,6 +46,12 @@ public class ReporteDTO {
 		this.fechaReporte = fechaReporte;
 	}
 
+	public Integer getIdMaquina() {
+		return idMaquina;
+	}
+	public void setIdMaquina(Integer idMaquina) {
+		this.idMaquina = idMaquina;
+	}
 	public Integer getIdEmpleado() {
 		return idEmpleado;
 	}

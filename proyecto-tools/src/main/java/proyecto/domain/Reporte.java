@@ -4,41 +4,45 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the reporte database table.
  * 
  */
 @Entity
-@NamedQuery(name="Reporte.findAll", query="SELECT r FROM Reporte r")
+@NamedQuery(name = "Reporte.findAll", query = "SELECT r FROM Reporte r")
 public class Reporte implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_reporte")
+	@Column(name = "id_reporte")
 	private Integer idReporte;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_cita")
+	@Column(name = "fecha_cita")
 	private Date fechaCita;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_reporte")
+	@Column(name = "fecha_reporte")
 	private Date fechaReporte;
 
-	//bi-directional many-to-one association to Empleado
+	// bi-directional many-to-one association to Empleado
 	@ManyToOne
-	@JoinColumn(name="id_empleado")
+	@JoinColumn(name = "id_empleado")
 	private Empleado empleado;
 
-	//bi-directional many-to-one association to Sucursal
+	// bi-directional many-to-one association to Sucursal
 	@ManyToOne
-	@JoinColumn(name="id_sucursal")
+	@JoinColumn(name = "id_sucursal")
 	private Sucursal sucursal;
 
-	//bi-directional many-to-one association to TipoDano
+	// bi-directional many-to-one association to Maquinaria
 	@ManyToOne
-	@JoinColumn(name="id_tipo_dano")
+	@JoinColumn(name = "id_maquina")
+	private Maquinaria maquinaria;
+
+	// bi-directional many-to-one association to TipoDano
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_dano")
 	private TipoDano tipoDano;
 
 	public Reporte() {
@@ -74,6 +78,14 @@ public class Reporte implements Serializable {
 
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
+	}
+
+	public Maquinaria getMaquinaria() {
+		return this.maquinaria;
+	}
+
+	public void setMaquinaria(Maquinaria maquinaria) {
+		this.maquinaria = maquinaria;
 	}
 
 	public Sucursal getSucursal() {

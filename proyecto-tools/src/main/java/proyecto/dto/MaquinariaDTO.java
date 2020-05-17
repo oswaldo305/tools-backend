@@ -8,6 +8,7 @@ public class MaquinariaDTO {
 	private String nombreMaquina;
 	private Integer idEstado;
 	private Integer idSucursal;
+	
 	public MaquinariaDTO(Integer idMaquinaria, String detalle, String nombreMaquina, Integer idEstado,
 			Integer idSucursal) {
 		super();

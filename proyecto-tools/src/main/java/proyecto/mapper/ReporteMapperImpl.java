@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import proyecto.domain.Empleado;
+import proyecto.domain.Maquinaria;
 import proyecto.domain.Reporte;
 import proyecto.domain.Reporte;
 import proyecto.domain.Sucursal;
@@ -16,6 +17,7 @@ import proyecto.domain.TipoDano;
 import proyecto.dto.ReporteDTO;
 import proyecto.dto.ReporteDTO;
 import proyecto.servicio.EmpleadoService;
+import proyecto.servicio.MaquinariaService;
 import proyecto.servicio.SucursalService;
 import proyecto.servicio.TipoDanoService;
 @Component
@@ -30,6 +32,9 @@ public class ReporteMapperImpl implements ReporteMapper {
 	
 	@Autowired
 	TipoDanoService tipoDanoService;
+	
+	@Autowired
+	MaquinariaService maquinariaService;
 	
 	
 	@Override
@@ -53,6 +58,9 @@ public class ReporteMapperImpl implements ReporteMapper {
             		? reporte.getTipoDano().getIdTipoDano() : null);
             reporteDTO.setIdEmpleado((reporte.getEmpleado().getIdEmpleado() !=null)
             		? reporte.getEmpleado().getIdEmpleado() : null);
+            
+            reporteDTO.setIdMaquina((reporte.getMaquinaria().getIdMaquinaria()) !=null
+            		? reporte.getMaquinaria().getIdMaquinaria() : null);
 
             reporteDTO.setIdSucursal((reporte.getSucursal().getIdSucursal() !=null)
             		? reporte.getSucursal().getIdSucursal() : null);
@@ -84,10 +92,14 @@ public class ReporteMapperImpl implements ReporteMapper {
             Sucursal sucursal=new Sucursal();
             Empleado empleado =new Empleado();
             TipoDano tipoDano =new TipoDano();
+            Maquinaria maquinaria= new Maquinaria();
            
            
             if (reporteDTO.getIdSucursal() != null) {
                 sucursal = sucursalService.findById(reporteDTO.getIdSucursal());
+            }
+            if (reporteDTO.getIdMaquina() != null) {
+                maquinaria = maquinariaService.findById(reporteDTO.getIdMaquina());
             }
             if (reporteDTO.getIdEmpleado() != null) {
                 empleado = empleadoService.findById(reporteDTO.getIdEmpleado());
@@ -98,6 +110,9 @@ public class ReporteMapperImpl implements ReporteMapper {
 
             if (sucursal != null) {
                 reporte.setSucursal(sucursal);
+            }
+            if (maquinaria != null) {
+                reporte.setMaquinaria(maquinaria);
             }
             if (tipoDano != null) {
                 reporte.setTipoDano(tipoDano);
